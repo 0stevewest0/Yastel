@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#dc2626">
+  <title>Emergency SOS | Yastel Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- HEADER -->
+  <header class="dash-header">
+    <a href="dashboard.html" class="brand" aria-label="Yastel Hub Home">
+      <div class="brand-logo" style="width:36px;height:36px;font-size:1.1rem;border-radius:10px;">Y</div>
+      <div class="brand-text">
+        <h1 style="font-size:1rem;">YASTEL <span class="hub-text">HUB</span></h1>
+      </div>
+    </a>
+    <a href="dashboard.html" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.75rem;">🏠 Home</a>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="main-container" style="max-width: 680px;">
+    
+    <!-- SOS BANNER -->
+    <div style="background:linear-gradient(135deg, #dc2626 0%, #991b1b 100%); color:white; border-radius:24px; padding:22px; margin-bottom:16px; box-shadow:0 10px 30px rgba(220,38,38,0.25);">
+      <div style="font-size:11px; font-weight:800; background:rgba(255,255,255,0.2); padding:4px 10px; border-radius:99px; display:inline-block; margin-bottom:8px;">🚨 EMERGENCY SOS BEACON</div>
+      <h2 style="font-size:1.3rem; font-weight:900; margin-bottom:4px;">Late Night Safety & Security</h2>
+      <p style="font-size:0.82rem; opacity:0.9; line-height:1.4;">Reading late at New Building or Central Library? Use these hotlines or broadcast an SOS distress alert instantly.</p>
+    </div>
+
+    <!-- HOTLINES WIDGET -->
+    <div class="widget-box">
+      <div class="widget-title"><span>📞 Campus Security Hotlines</span></div>
+      <a href="tel:08000000000" class="btn" style="background:#dc2626; color:white; width:100%; margin-bottom:10px; text-decoration:none; display:flex; justify-content:center; align-items:center; padding:12px; border-radius:12px; font-weight:900;">
+        🚨 Call Campus Security Hotline
+      </a>
+      <a href="https://wa.me/2348123456789?text=EMERGENCY:%20Need%20security%20assistance%20at%20Yabatech%20campus!" target="_blank" class="btn" style="background:#10b981; color:white; width:100%; text-decoration:none; display:flex; justify-content:center; align-items:center; padding:12px; border-radius:12px; font-weight:900;">
+        📱 WhatsApp Security Patrol
+      </a>
+    </div>
+
+    <!-- BROADCAST DISTRESS BEACON -->
+    <div class="widget-box">
+      <div class="widget-title"><span>⚡ Broadcast Distress Beacon</span></div>
+      <p style="font-size:0.84rem; color:var(--muted); margin-bottom:12px;">Type your exact reading spot to alert nearby student geng and security patrol.</p>
+      
+      <div class="form-group">
+        <label for="sos-location">Your Current Reading Location</label>
+        <input type="text" id="sos-location" class="form-control" placeholder="e.g. Central Library, 2nd Floor" style="margin-bottom:10px;">
+      </div>
+      <button type="button" id="broadcast-sos-btn" class="btn" style="background:#dc2626; color:white; width:100%; padding:12px; font-weight:900; border-radius:12px;">
+        🚨 BROADCAST SOS ALERT NOW
+      </button>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <a href="dashboard.html" class="nav-item">
+      <span class="icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="market.html" class="nav-item">
+      <span class="icon">🛒</span>
+      <span>Market</span>
+    </a>
+    <a href="mingle.html" class="nav-item">
+      <span class="icon">🔥</span>
+      <span>Gist</span>
+    </a>
+    <a href="profile.html" class="nav-item">
+      <span class="icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script type="module" src="sos.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#006633">
+  <title>Dashboard | Yastel Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+  <link rel="manifest" href="manifest.json">
+
+<body class="dashboard-body">
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+      <!-- DASHBOARD TOP HEADER -->
+<header class="dash-header">
+  <!-- 1. BRAND LOGO & NAME (Keep this intact) -->
+  <a href="dashboard.html" class="brand" aria-label="Yastel Hub Home">
+    <div class="brand-logo" style="width:36px;height:36px;font-size:1.1rem;border-radius:10px;">Y</div>
+    <div class="brand-text">
+      <h1 style="font-size:1rem;">YASTEL <span class="hub-text">HUB</span></h1>
+    </div>
+  </a>
+
+  <!-- 2. TOP RIGHT MENU (Add this on the right side) -->
+  <div style="position: relative;">
+    <button id="menu-toggle-btn" class="dash-icon-btn" title="Open Navigation Menu" style="background: #f1f5f9; border: 1px solid var(--border); font-size: 1.1rem; padding: 6px 10px; border-radius: 10px; cursor: pointer;">
+      ☰
+    </button>
+    
+    <div id="nav-dropdown-menu" style="display: none; position: absolute; right: 0; top: 50px; background: white; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.12); width: 220px; z-index: 1000; overflow: hidden; padding: 8px 0;">
+  <a href="dashboard.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 700;">🏠 Home Feed</a>
+  <a href="profile.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 700;">👤 My Profile</a>
+  <a href="materials.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 700;">📚 Study Materials</a>
+  <a href="sos.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: #dc2626; text-decoration: none; font-size: 0.88rem; font-weight: 700;">🚨 Campus SOS Beacon</a>
+  <a href="market.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 700;">🛒 Marketplace</a>
+</div>
+
+  </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="main-container">
+    
+    <!-- VIP STUDENT ID CARD -->
+    <div class="vip-card">
+      <div class="vip-level-badge" id="profile-level-badge">⭐ Level 1: Loading rank...</div>
+      <div class="vip-name" id="profile-name">E dey load name...</div>
+      <div class="vip-meta" id="profile-username">@loading_geng</div>
+      
+      <div class="vip-details-grid">
+        <div class="vip-detail-item">
+          <span>Department</span>
+          <strong id="profile-dept">...</strong>
+        </div>
+        <div class="vip-detail-item">
+          <span>Residence / Spot</span>
+          <strong id="profile-residence">...</strong>
+        </div>
+      </div>
+    </div>
+
+        <!-- NEPA / LIGHT RADAR WIDGET -->
+    <div class="widget-box">
+      <div class="widget-title">
+        <span>⚡ Hostel Light & Water Radar</span>
+        <span style="font-size:11px; color:var(--green); font-weight:800;" id="nepa-live-tag">● Live</span>
+      </div>
+      <!-- Live Status Banner -->
+      <div id="nepa-status-banner" style="background:#f1f5f9; padding:12px 16px; border-radius:14px; margin-bottom:12px; font-size:0.85gr5rem; font-weight:700; color:var(--text);">
+        ⚡ Checking current campus light status...
+      </div>
+      <p style="font-size:0.84rem; color:var(--muted); margin-bottom:12px;">Wetin your block situation right now? Tap to update your geng!</p>
+      <div class="radar-status">
+        <button type="button" id="light-on-btn" class="radar-btn light-on">🟢 Light Dey!</button>
+        <button type="button" id="light-off-btn" class="radar-btn light-off">🔴 Down NEPA</button>
+      </div>
+    </div>
+
+          <!-- CAMPUS LOCATION FEEDS & CHAT HUB (OUTER SHELL REMOVED) -->
+    <div style="margin-top: 16px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 12px; padding: 0 4px;">
+        <h3 style="font-size:1.1rem; font-weight:900; color:var(--text); margin:0;">🔥 Campus Gist & Location Hub</h3>
+        <span id="pass-timer-badge" style="display:none; font-size:10px; background:#fef3c7; color:#d97706; padding:3px 8px; border-radius:99px; font-weight:800;">⏱️ Pass: 10:00</span>
+      </div>
+
+      <!-- LOCATION TABS (Full Width Horizontal Scroll) -->
+      <div style="display:flex; gap:6px; overflow-x:auto; padding-bottom:10px; margin-bottom:12px; scrollbar-width:none;">
+        <button type="button" class="feed-tab active" data-location="ALL">🌐 All Feeds</button>
+        <button type="button" class="feed-tab" data-location="Boys Hostel">👦 Boys Hostel</button>
+        <button type="button" class="feed-tab" data-location="Akata Hostel">👧 Akata Girls</button>
+        <button type="button" class="feed-tab" data-location="New Building">🏫 New Bldg</button>
+        <button type="button" class="feed-tab" data-location="Central Library">📚 Library</button>
+        <button type="button" class="feed-tab" data-location="Multipurpose Hall">🏛️ MPH</button>
+        <button type="button" class="feed-tab" data-location="Alumni Building">🎓 Alumni</button>
+      </div>
+
+      <!-- POST INPUT BOX -->
+      <div id="post-box-wrapper" style="background:white; border:1px solid var(--border); padding:14px; border-radius:16px; margin-bottom:16px; box-shadow: 0 2px 8px rgba(0,0,0,0.03);">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+          <span style="font-size:0.75rem; font-weight:800; color:var(--muted);">Posting to:</span>
+          <select id="post-target-select" style="font-size:0.78rem; font-weight:700; padding:6px 10px; border-radius:8px; border:1px solid #cbd5e1; outline:none; background:#f8fafc;">
+            <option value="ALL">🌐 All Feeds</option>
+            <option value="Boys Hostel">👦 Boys Hostel</option>
+            <option value="Akata Hostel">👧 Akata Hostel</option>
+            <option value="New Building">🏫 New Building</option>
+            <option value="Central Library">📚 Central Library</option>
+            <option value="Multipurpose Hall">🏛️ Multipurpose Hall</option>
+            <option value="Alumni Building">🎓 Alumni Building</option>
+          </select>
+        </div>
+
+        <textarea id="gist-input" class="form-control" placeholder="Wetin dey happen for your location? Drop gist..." style="min-height:75px; resize:none; margin-bottom:10px; font-size:0.88rem; border-radius:10px;"></textarea>
+        
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
+          <button type="button" id="post-gist-btn" class="btn btn-green" style="padding:10px 16px; font-size:0.85rem; flex:1; font-weight:800;">Post Gist ( +20 XP )</button>
+          <button type="button" id="request-pass-btn" class="btn btn-outline" style="display:none; padding:8px 12px; font-size:0.75rem; color:var(--gold); border-color:var(--gold);">🔑 Request 10-Min Pass</button>
+        </div>
+      </div>
+
+      <!-- OPPOSITE GENDER ONLINE & PASS PANEL (Hidden by default) -->
+      <div id="opposite-gender-panel" style="display:none; background:#fff7ed; border:1px solid #fed7aa; padding:12px; border-radius:14px; margin-bottom:16px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <strong style="font-size:0.82rem; color:#9a3412;" id="panel-title">👧 Akata Girls Online</strong>
+          <span style="font-size:10px; background:#ffedd5; color:#c2410c; padding:2px 8px; border-radius:99px; font-weight:800;">🔒 Restricted Zone</span>
+        </div>
+        <p style="font-size:0.78rem; color:#9a3412; margin-bottom:10px;">You cannot post here directly unless granted a 10-minute visitor pass by a resident.</p>
+        <div id="online-users-list" style="font-size:0.78rem; color:#431407; margin-bottom:10px; line-height:1.4;">
+          🟢 Loading online geng...
+        </div>
+      </div>
+
+      <!-- LIVE FEED STREAM (FULL WIDTH POSTS) -->
+      <div id="gist-feed-container">
+        <p style="text-align:center; color:var(--muted); font-size:0.85rem; padding: 20px 0;">E dey load campus feeds...</p>
+      </div>
+    </div>
+
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <a href="dashboard.html" class="nav-item active">
+      <span class="icon">🏠</span>
+      <span>Home</span>
+    </a>
+        <a href="market.html" class="nav-item">
+      <span class="icon">🛒</span>
+      <span>Market</span>
+    </a>
+
+        <a href="mingle.html" class="nav-item">
+      <span class="icon">🔥</span>
+      <span>Gist</span>
+    </a>
+
+        <a href="profile.html" class="nav-item">
+      <span class="icon">👤</span>
+      <span>Profile</span>
+    </a>
+
+  </nav>
+
+  <!-- External JavaScript File (Module type required for Firebase) -->
+  <script type="module" src="script.js"></script>
+  <!-- FEEDBACK MODAL POPUP -->
+  <div id="feedback-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 480px;">
+      <button type="button" class="modal-close" id="close-feedback-modal">✕</button>
+      
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+        <span style="font-size: 1.3rem;">📣</span>
+        <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--text);">App Feedback & Update Ideas</h3>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 16px;">Wetin you go like make we add or fix for Yastel Hub?</p>
+
+      <form id="feedback-modal-form">
+        <div class="form-group">
+          <label for="feedback-category">Feedback Category</label>
+          <select id="feedback-category" class="form-control" required>
+            <option value="💡 New Feature Idea">💡 New Feature Idea</option>
+            <option value="🏢 Add New Hostel / Block Info">🏢 Add New Hostel / Block Info</option>
+            <option value="🐛 Report a Problem / Bug">🐛 Report a Problem / Bug</option>
+            <option value="💬 General Suggestion">💬 General Suggestion</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-message">Your Feedback / Feature Request</label>
+          <textarea id="feedback-message" class="form-control" placeholder="Tell us what you want added to Yastel Hub (e.g., Add food delivery updates for Complex Hostel, or add an assignment helper spot)..." style="min-height: 90px; resize: none;" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-sender">Your Name / Department (Optional)</label>
+          <input type="text" id="feedback-sender" class="form-control" placeholder="e.g. Gabriel (Civil Eng)">
+        </div>
+
+        <button type="submit" id="submit-feedback-modal-btn" class="btn btn-green btn-full" style="margin-top: 10px; padding: 12px; font-weight: 900;">
+          SUBMIT FEEDBACK TO DEVELOPERS
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- FEEDBACK MODAL POPUP -->
+  <div id="feedback-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 480px;">
+      <button type="button" class="modal-close" id="close-feedback-modal">✕</button>
+      
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+        <span style="font-size: 1.3rem;">📣</span>
+        <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--text);">App Feedback & Update Ideas</h3>
+      </div>
+      <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 16px;">Wetin you go like make we add or fix for Yastel Hub?</p>
+
+      <form id="feedback-modal-form">
+        <div class="form-group">
+          <label for="feedback-category">Feedback Category</label>
+          <select id="feedback-category" class="form-control" required>
+            <option value="💡 New Feature Idea">💡 New Feature Idea</option>
+            <option value="🏢 Add New Hostel / Block Info">🏢 Add New Hostel / Block Info</option>
+            <option value="🐛 Report a Problem / Bug">🐛 Report a Problem / Bug</option>
+            <option value="💬 General Suggestion">💬 General Suggestion</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-message">Your Feedback / Feature Request</label>
+          <textarea id="feedback-message" class="form-control" placeholder="Tell us what you want added to Yastel Hub..." style="min-height: 90px; resize: none;" required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-sender">Your Name / Department (Optional)</label>
+          <input type="text" id="feedback-sender" class="form-control" placeholder="e.g. Gabriel (Civil Eng)">
+        </div>
+
+        <button type="submit" id="submit-feedback-modal-btn" class="btn btn-green btn-full" style="margin-top: 10px; padding: 12px; font-weight: 900;">
+          SUBMIT FEEDBACK TO DEVELOPERS
+        </button>
+      </form>
+    </div>
+  </div>
+<!-- USER PROFILE POPUP MODAL -->
+<div id="user-profile-modal" class="modal-overlay">
+  <div class="modal-card">
+    <button type="button" id="close-user-profile-modal" style="position: absolute; top: 12px; right: 12px; background: none; border: none; font-size: 1.2rem; cursor: pointer; font-weight: bold;">✕</button>
+    
+    <div style="width: 60px; height: 60px; border-radius: 50%; background: #006633; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 900; margin: 0 auto 10px;" id="modal-user-avatar">U</div>
+    
+    <h3 style="font-size: 1.2rem; font-weight: 900; text-align: center; color: var(--text, #1e293b); margin: 0 0 4px 0;" id="modal-user-name">Loading...</h3>
+    <p style="font-size: 0.85rem; color: #006633; font-weight: 800; text-align: center; margin-bottom: 14px;" id="modal-user-handle">@username</p>
+
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px; font-size: 0.82rem; display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; color: #334155;">
+      <div><strong>📧 Email:</strong> <span id="modal-user-email">...</span></div>
+      <div><strong>🎓 Dept & Level:</strong> <span id="modal-user-dept-level">...</span></div>
+      <div><strong>📖 Course/Focus:</strong> <span id="modal-user-course">...</span></div>
+      <div><strong>⏱️ Study Hours:</strong> <span id="modal-user-study-time">...</span></div>
+      <div><strong>📍 Study Spot:</strong> <span id="modal-user-spot">...</span></div>
+    </div>
+
+    <a id="modal-user-wa-btn" href="#" target="_blank" class="btn btn-green btn-full" style="padding: 10px; display: none; text-align: center; text-decoration: none; background: #006633; color: white; border-radius: 8px; font-weight: bold;">
+      💬 Connect for Study Group (WhatsApp)
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

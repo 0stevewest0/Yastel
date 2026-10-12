@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#006633">
+  <title>My Profile & Leaderboard | Yastel Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body class="dashboard-body">
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- HEADER -->
+  <header class="dash-header">
+    <a href="dashboard.html" class="brand" aria-label="Yastel Hub Home">
+      <div class="brand-logo" style="width:36px;height:36px;font-size:1.1rem;border-radius:10px;">Y</div>
+      <div class="brand-text">
+        <h1 style="font-size:1rem;">YASTEL <span class="hub-text">HUB</span></h1>
+      </div>
+    </a>
+    
+    <!-- TOP RIGHT NAVIGATION MENU -->
+    <div style="position: relative;">
+      <button id="menu-toggle-btn" class="dash-icon-btn" title="Open Navigation Menu" style="background: #f1f5f9; border: 1px solid var(--border); font-size: 1.1rem; padding: 6px 10px; border-radius: 10px; cursor: pointer;">
+        ☰
+      </button>
+      
+      <div id="nav-dropdown-menu" style="display: none; position: absolute; right: 0; top: 45px; background: white; border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); width: 200px; z-index: 1000; overflow: hidden; padding: 6px 0;">
+        <a href="dashboard.html" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; color: var(--text); text-decoration: none; font-size: 0.85rem; font-weight: 700;">🏠 Home Feed</a>
+        <a href="profile.html" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; color: var(--green); text-decoration: none; font-size: 0.85rem; font-weight: 700;">👤 My Profile</a>
+        <a href="materials.html" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; color: var(--text); text-decoration: none; font-size: 0.85rem; font-weight: 700;">📚 Study Materials</a>
+        <a href="market.html" style="display: flex; align-items: center; gap: 10px; padding: 10px 16px; color: var(--text); text-decoration: none; font-size: 0.85rem; font-weight: 700;">🛒 Marketplace</a>
+        <div style="border-top: 1px solid var(--border); margin: 4px 0;"></div>
+        <button id="logout-btn" style="width: 100%; text-align: left; background: none; border: none; display: flex; align-items: center; gap: 10px; padding: 10px 16px; color: #b91c1c; font-size: 0.85rem; font-weight: 700; cursor: pointer;">🚪 Sign Out</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="main-container" style="max-width: 680px;">
+    
+    <!-- VIP STUDENT ID CARD SUMMARY -->
+    <div class="vip-card" style="margin-bottom: 20px; background: #006633; color: white; padding: 20px; border-radius: 16px;">
+      <div class="vip-level-badge" id="profile-level-badge" style="font-size: 0.8rem; font-weight: 800; background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 10px; border-radius: 99px; margin-bottom: 8px;">⭐ Loading rank...</div>
+      <div class="vip-name" id="profile-name" style="font-size: 1.3rem; font-weight: 900; color: white; margin-bottom: 2px;">Loading name...</div>
+      <div class="vip-meta" id="profile-username" style="font-size: 0.85rem; color: #a7f3d0; font-weight: 700; margin-bottom: 14px;">@loading_geng</div>
+      
+      <div class="vip-details-grid" style="display: flex; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.2); margin-top: 10px; padding-top: 10px;">
+        <div class="vip-detail-item">
+          <span style="font-size: 0.75rem; opacity: 0.8; display: block;">Department</span>
+          <strong id="profile-dept" style="font-size: 0.9rem; color: white;">...</strong>
+        </div>
+        <div class="vip-detail-item" style="text-align: right;">
+          <span style="font-size: 0.75rem; opacity: 0.8; display: block;">Total XP</span>
+          <strong id="profile-xp" style="font-size: 0.9rem; color: #fbbf24;">0 XP</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAVED PROFILE INFO GRAPHIC CARD (Initially Hidden or Shown based on data) -->
+    <div id="profile-view-card" class="widget-box" style="padding: 20px; margin-bottom: 20px; display: none;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <div class="widget-title" style="margin-bottom: 0;"><span>🎓 My Study & Profile Info</span></div>
+        <button type="button" id="edit-profile-toggle-btn" class="btn btn-outline" style="padding: 4px 10px; font-size: 0.75rem;">✏️ Edit</button>
+      </div>
+
+      <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; gap: 10px; font-size: 0.85rem;">
+        <div><strong>📚 Academic Level:</strong> <span id="view-level" style="color: var(--green); font-weight: 700;">Not set</span></div>
+        <div><strong>📖 Course / Focus Area:</strong> <span id="view-course" style="color: #334155;">Not set</span></div>
+        <div><strong>⏱️ Preferred Study Time:</strong> <span id="view-study-time" style="color: #334155;">Not set</span></div>
+        <div><strong>💬 WhatsApp Number:</strong> <span id="view-whatsapp" style="color: #334155;">Not set</span></div>
+      </div>
+    </div>
+
+    <!-- EDIT PROFILE & STUDY PREFERENCES FORM (Toggled) -->
+    <div id="profile-form-box" class="widget-box" style="padding: 20px; margin-bottom: 20px;">
+      <div class="widget-title" style="margin-bottom: 14px;">
+        <span>✏️ Update Study & Profile Info</span>
+      </div>
+      <p style="font-size: 0.82rem; color: var(--muted); margin-bottom: 16px;">Complete your details so study partners can easily find and connect with you.</p>
+
+      <form id="update-profile-form">
+        <div class="form-group">
+          <label for="update-level">Academic Level</label>
+          <select id="update-level" class="form-control" required>
+            <option value="">Select your level</option>
+            <option value="ND 1">ND 1</option>
+            <option value="ND 2">ND 2</option>
+            <option value="HND 1">HND 1</option>
+            <option value="HND 2">HND 2</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="update-course">Specific Course / Focus Area</label>
+          <input type="text" id="update-course" class="form-control" placeholder="e.g. Web Development, Networking, Java">
+        </div>
+
+        <div class="form-group">
+          <label for="update-study-time">Preferred Study Time Range</label>
+          <input type="text" id="update-study-time" class="form-control" placeholder="e.g. 8:00 PM – 11:00 PM">
+        </div>
+
+        <div class="form-group">
+          <label for="update-whatsapp">WhatsApp Phone Number (for Study Connect)</label>
+          <input type="tel" id="update-whatsapp" class="form-control" placeholder="08123456789">
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+          <button type="submit" id="save-profile-btn" class="btn btn-green btn-full" style="margin-top: 10px; padding: 12px; font-weight: 900; flex: 1;">
+            SAVE PROFILE CHANGES
+          </button>
+          <button type="button" id="cancel-edit-btn" class="btn btn-outline" style="margin-top: 10px; padding: 12px; display: none;">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- LEADERBOARD WIDGET -->
+    <div class="widget-box" style="padding: 20px;">
+      <div class="widget-title" style="margin-bottom: 10px;">
+        <span>🏆 Campus XP Leaderboard</span>
+        <span style="font-size:11px; color:var(--gold); font-weight:800;">Top Geng</span>
+      </div>
+      <p style="font-size:0.84rem; color:var(--muted); margin-bottom:12px;">Earn XP by updating radar, posting gists, and dropping comments!</p>
+      <div id="leaderboard-list">
+        <p style="text-align:center; color:var(--muted); font-size:0.85rem; padding: 15px 0;">Loading leaderboard...</p>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <a href="dashboard.html" class="nav-item">
+      <span class="icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="market.html" class="nav-item">
+      <span class="icon">🛒</span>
+      <span>Market</span>
+    </a>
+    <a href="mingle.html" class="nav-item">
+      <span class="icon">🔥</span>
+      <span>Gist</span>
+    </a>
+    <a href="profile.html" class="nav-item active">
+      <span class="icon">👤</span>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <script type="module" src="profile.js"></script>
+</body>
+</html>

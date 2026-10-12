@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#006633">
+  <title>Mingling & Matchmaking | Yastel Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+  <link rel="manifest" href="manifest.json">
+
+<body class="dashboard-body">
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- HEADER -->
+  <header class="dash-header">
+    <a href="dashboard.html" class="brand" aria-label="Yastel Hub Home">
+      <div class="brand-logo" style="width:36px;height:36px;font-size:1.1rem;border-radius:10px;">Y</div>
+      <div class="brand-text">
+        <h1 style="font-size:1rem;">YASTEL <span class="hub-text">HUB</span></h1>
+      </div>
+    </a>
+    <a href="dashboard.html" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.75rem;">🏠 Home</a>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="main-container" style="max-width: 900px;">
+    
+    <!-- BANNER TITLE SECTION -->
+    <div style="text-align: center; margin-bottom: 20px;">
+      <h2 style="font-size: 1.5rem; font-weight: 900; color: var(--text);">Yabatech Mingling & Matchmaking Zone</h2>
+      <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Holla at fine guys & girls on campus, drop shoutouts, or broadcast your reading radar!</p>
+    </div>
+
+    <div class="mingle-layout-grid">
+      
+      <!-- LEFT COLUMN: POSTING BOX & QUAD FEED -->
+      <div class="left-quad-section">
+        
+        <!-- POST INPUT BOX WITH HASHTAG TAGS -->
+        <div style="background: white; border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-bottom: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.02);">
+          <textarea id="quad-input" class="form-control" placeholder="Holla at someone or drop shoutout... (+20 XP)" style="min-height: 80px; resize: none; margin-bottom: 12px; font-size: 0.88rem;"></textarea>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+           <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+  <button type="button" class="tag-chip active" data-tag="#Shoutout">#Shoutout</button>
+  <button type="button" class="tag-chip" data-tag="#ReadingPartner">#ReadingPartner</button>
+  <button type="button" class="tag-chip" data-tag="#Matchmaking">#Matchmaking</button>
+</div>
+
+            <button type="button" id="post-quad-btn" class="btn" style="background: #db2777; color: white; padding: 8px 18px; font-size: 0.82rem; border-radius: 99px;">Post to Quad</button>
+          </div>
+        </div>
+
+        <!-- QUAD STREAM FEED -->
+        <div id="quad-feed-container">
+          <p style="text-align:center; color:var(--muted); font-size:0.85rem; padding: 20px 0;">E dey load Quad cruise...</p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN: LIVE MATCH RADAR BROADCASTER -->
+              <!-- DYNAMIC BROADCAST RADAR CARD -->
+        <div class="dynamic-radar-card">
+          <div class="radar-broadcast-header">
+            <div class="radar-wave-icon">📡</div>
+            <div>
+              <h3>Broadcast Your Radar</h3>
+              <p>Find study buddies or hangout geng in real-time</p>
+            </div>
+          </div>
+
+          <div class="radar-broadcast-form">
+            <div class="form-group" style="margin-bottom: 10px;">
+              <label for="radar-type">Radar Category</label>
+              <select id="radar-type" class="form-control">
+                <option value="📚 Study Buddy">📚 Study Buddy (Library / New Bldg)</option>
+                <option value="💬 WhatsApp Chat">💬 WhatsApp Chat Partner</option>
+                <option value="☕ Food & Hangout">☕ Suya & Hangout Geng</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 10px;">
+              <label for="radar-message">What's your update?</label>
+              <input type="text" id="radar-message" class="form-control" placeholder="e.g. Pairing for GST 301 tonight...">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 14px;">
+              <label for="radar-whatsapp">WhatsApp Phone</label>
+              <input type="text" id="radar-whatsapp" class="form-control" placeholder="08123456789">
+            </div>
+
+            <button type="button" id="broadcast-radar-btn" class="btn btn-pink-glow">
+              🚀 Launch Live Radar
+            </button>
+          </div>
+        </div>
+
+        <!-- LIVE ACTIVE RADARS STREAM -->
+        <div style="background: white; border: 1px solid var(--border); border-radius: 20px; padding: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.03);">
+          <div style="font-size: 0.85rem; font-weight: 900; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+            <span>🟢 Live Campus Radars</span>
+          </div>
+          <div id="live-radars-container">
+            <p style="font-size: 0.78rem; color: var(--muted); text-align: center; padding: 10px 0;">Loading active radars...</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <a href="dashboard.html" class="nav-item">
+      <span class="icon">🏠</span>
+      <span>Home</span>
+    </a>
+        <a href="market.html" class="nav-item">
+      <span class="icon">🛒</span>
+      <span>Market</span>
+    </a>
+
+    <a href="mingle.html" class="nav-item active">
+      <span class="icon">🔥</span>
+      <span>Gist</span>
+    </a>
+        <a href="profile.html" class="nav-item">
+      <span class="icon">👤</span>
+      <span>Profile</span>
+    </a>
+
+  </nav>
+
+  <script type="module" src="mingle.js"></script>
+</body>
+</html>

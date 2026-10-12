@@ -1,0 +1,17 @@
+{
+  "name": "Yastel Hub - Yabatech Student Network",
+  "short_name": "Yastel Hub",
+  "start_url": "/dashboard.html",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#006633",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://img.icons8.com/color/512/000000/alphabet-y.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

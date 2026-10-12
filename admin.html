@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#006633">
+  <title>Admin Portal | Yastel Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-body">
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- HEADER -->
+  <header class="dash-header">
+    <a href="dashboard.html" class="brand" aria-label="Yastel Hub Home">
+      <div class="brand-logo" style="width:36px;height:36px;font-size:1.1rem;border-radius:10px;">Y</div>
+      <div class="brand-text">
+        <h1 style="font-size:1rem;">YASTEL <span class="hub-text">ADMIN</span></h1>
+      </div>
+    </a>
+    <a href="dashboard.html" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.75rem;">🏠 App Home</a>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="main-container" style="max-width: 800px;">
+    
+    <div style="background: white; border: 1px solid var(--border); border-radius: 20px; padding: 20px; margin-bottom: 20px;">
+      <h2 style="font-size: 1.3rem; font-weight: 900; color: var(--text);">🛠️ Developer Control Center</h2>
+      <p style="font-size: 0.82rem; color: var(--muted); margin-top: 4px;">Monitor incoming student feedback, feature requests, and emergency SOS alerts in real time.</p>
+    </div>
+
+    <!-- FEEDBACK SECTION -->
+    <div class="widget-box">
+      <div class="widget-title">
+        <span>💡 Student Feedback & Bug Reports</span>
+      </div>
+      <div id="admin-feedback-list">
+        <p style="text-align:center; color:var(--muted); font-size:0.85rem; padding: 20px 0;">Loading feedback records...</p>
+      </div>
+    </div>
+
+    <!-- SOS ALERTS SECTION -->
+    <div class="widget-box">
+      <div class="widget-title">
+        <span>🚨 Active SOS Alerts</span>
+      </div>
+      <div id="admin-sos-list">
+        <p style="text-align:center; color:var(--muted); font-size:0.85rem; padding: 20px 0;">Loading SOS alerts...</p>
+      </div>
+    </div>
+
+  </main>
+
+  <script type="module" src="admin.js"></script>
+</body>
+</html>

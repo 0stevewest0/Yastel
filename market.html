@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#006633">
+  <title>Hostel Market | Yastel Hub</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+
+</head>
+<body class="dashboard-body">
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- HEADER -->
+ <header class="dash-header">
+  <!-- 1. BRAND LOGO & NAME (Keep this intact) -->
+  <a href="dashboard.html" class="brand" aria-label="Yastel Hub Home">
+    <div class="brand-logo" style="width:36px;height:36px;font-size:1.1rem;border-radius:10px;">Y</div>
+    <div class="brand-text">
+      <h1 style="font-size:1rem;">YASTEL <span class="hub-text">HUB</span></h1>
+    </div>
+  </a>
+
+  <!-- 2. TOP RIGHT MENU (Add this on the right side) -->
+  <div style="position: relative;">
+    <button id="menu-toggle-btn" class="dash-icon-btn" title="Open Navigation Menu" style="background: #f1f5f9; border: 1px solid var(--border); font-size: 1.1rem; padding: 6px 10px; border-radius: 10px; cursor: pointer;">
+      ☰
+    </button>
+    
+    <div id="nav-dropdown-menu" style="display: none; position: absolute; right: 0; top: 50px; background: white; border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 12px 30px rgba(0,0,0,0.12); width: 220px; z-index: 1000; overflow: hidden; padding: 8px 0;">
+  <a href="dashboard.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 700;">🏠 Home Feed</a>
+  <a href="profile.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 700;">👤 My Profile</a>
+  <a href="materials.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 700;">📚 Study Materials</a>
+  <a href="sos.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: #dc2626; text-decoration: none; font-size: 0.88rem; font-weight: 700;">🚨 Campus SOS Beacon</a>
+  <a href="market.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 18px; color: var(--text); text-decoration: none; font-size: 0.88rem; font-weight: 700;">🛒 Marketplace</a>
+</div>
+
+  </div>
+</header>
+   
+    <!-- MARKETPLACE HEADER BANNER -->
+    <div style="background: white; border: 1px solid var(--border); border-radius: 20px; padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.02);">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+          <span style="font-size: 1.3rem;">🏪</span>
+          <h2 style="font-size: 1.3rem; font-weight: 900; color: var(--text);">Yabatech Hostel Market</h2>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--muted);">Buy cheap standing fans, gas cylinders, past question booklets & mattresses directly from hostel mates!</p>
+      </div>
+      <button type="button" id="open-sell-modal" class="btn btn-green" style="border-radius: 99px; padding: 10px 18px; font-size: 0.82rem;">
+        ➕ List Item for Sale
+      </button>
+    </div>
+
+    <!-- MARKET ITEMS GRID -->
+    <div id="market-items-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;">
+      <p style="text-align:center; color:var(--muted); font-size:0.85rem; padding: 30px 0; grid-column: 1 / -1;">Loading market items...</p>
+    </div>
+
+  </main>
+
+  <!-- SELL ITEM MODAL -->
+  <div id="sell-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width: 480px;">
+      <button type="button" class="modal-close" id="close-sell-modal">✕</button>
+      <h3 style="font-size: 1.15rem; font-weight: 900; color: var(--text); margin-bottom: 4px;">📦 List Item for Sale</h3>
+      <p style="font-size: 0.8rem; color: var(--muted); margin-bottom: 16px;">Sell your unused items to fellow Yabatech students.</p>
+
+      <form id="sell-form">
+        <div class="form-group">
+          <label for="item-title">Item Title</label>
+          <input type="text" id="item-title" class="form-control" placeholder="e.g. OX 18'' Standing Fan" required>
+        </div>
+        <div class="form-group">
+          <label for="item-price">Price (₦)</label>
+          <input type="number" id="item-price" class="form-control" placeholder="e.g. 16500" required>
+        </div>
+        <div class="form-group">
+          <label for="item-whatsapp">WhatsApp Phone Number</label>
+          <input type="tel" id="item-whatsapp" class="form-control" placeholder="08123456789" required>
+        </div>
+        <button type="submit" id="submit-item-btn" class="btn btn-green btn-full" style="margin-top: 10px;">
+          POST ITEM TO MARKETPLACE
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <a href="dashboard.html" class="nav-item">
+      <span class="icon">🏠</span>
+      <span>Home</span>
+    </a>
+    <a href="market.html" class="nav-item active">
+      <span class="icon">🛒</span>
+      <span>Market</span>
+    </a>
+    <a href="mingle.html" class="nav-item">
+      <span class="icon">🔥</span>
+      <span>Gist</span>
+    </a>
+        <a href="profile.html" class="nav-item">
+      <span class="icon">👤</span>
+      <span>Profile</span>
+    </a>
+
+  </nav>
+
+  <script type="module" src="market.js"></script>
+</body>
+</html>

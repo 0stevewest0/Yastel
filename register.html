@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#006633">
+  <title>Sign Up | Yastel Hub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+  
+  <header>
+    <div class="nav-container">
+      <a href="index.html" class="brand" aria-label="Yastel Hub home">
+        <div class="brand-logo">Y</div>
+        <div class="brand-text">
+          <h1>YASTEL <span class="hub-text">HUB</span></h1>
+          <span class="sub-text">YABATECH STUDENT NETWORK</span>
+        </div>
+      </a>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="modal-card register-card">
+      <h3 class="register-title">JOIN YASTEL HUB (Sign Up)</h3>
+      <p class="register-subtitle">Create your student profile section by section.</p>
+      <hr class="register-divider">
+      
+      <form id="register-form">
+        <!-- STEP 1: BASIC DETAILS -->
+        <div class="form-step active" data-step="1">
+          <div class="step-indicator">Step 1 of 3: Basic Details</div>
+          <div class="form-group">
+            <label for="reg-name">Full Name</label>
+            <input id="reg-name" name="fullName" type="text" class="form-control" placeholder="e.g. Gabriel Tobi" autocomplete="name" required>
+          </div>
+          <div class="form-group">
+            <label for="reg-matric">YABATECH Matric Number</label>
+            <input id="reg-matric" name="matric" type="text" class="form-control" placeholder="F/ND/24/3210102" pattern="F/ND/[0-9]{2}/[0-9]{7}" title="Use the format F/ND/24/3210102" autocapitalize="characters" required>
+            <small class="field-help">Required format: F/ND/24/3210102</small>
+          </div>
+          <div class="form-group">
+            <label for="reg-username">Choose a Username</label>
+            <input id="reg-username" name="username" type="text" class="form-control" placeholder="e.g. favour_321" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]+" autocapitalize="none" required>
+            <small class="field-help">3–20 letters, numbers or underscores.</small>
+          </div>
+          <button type="button" class="btn btn-green btn-full" onclick="nextFormStep(1)">NEXT STEP ➡️</button>
+        </div>
+
+        <!-- STEP 2: ACADEMIC & RESIDENCE -->
+        <div class="form-step" data-step="2">
+          <div class="step-indicator">Step 2 of 3: Academic & Residence</div>
+          <div class="register-grid">
+            <div class="form-group">
+              <label for="reg-department">Department</label>
+              <select id="reg-department" name="department" class="form-control" required>
+                <option value="">Select your department</option>
+                <option>Accountancy</option>
+                <option>Agricultural Technology</option>
+                <option>Architectural Technology</option>
+                <option>Art and Industrial Design</option>
+                <option>Banking and Finance</option>
+                <option>Building Technology</option>
+                <option>Business Administration and Management</option>
+                <option>Chemical Engineering</option>
+                <option>Civil Engineering</option>
+                <option>Computer Engineering</option>
+                <option>Computer Science</option>
+                <option>Electrical and Electronics Engineering</option>
+                <option>Estate Management and Valuation</option>
+                <option>Food Technology</option>
+                <option>Hospitality Management</option>
+                <option>Industrial Maintenance Engineering</option>
+                <option>Library and Information Science</option>
+                <option>Marketing</option>
+                <option>Mass Communication</option>
+                <option>Mechanical Engineering</option>
+                <option>Mechatronics Engineering</option>
+                <option>Nutrition and Dietetics</option>
+                <option>Office Technology and Management</option>
+                <option>Polymer Technology</option>
+                <option>Printing Technology</option>
+                <option>Public Administration</option>
+                <option>Quantity Surveying</option>
+                <option>Science Laboratory Technology</option>
+                <option>Statistics</option>
+                <option>Surveying and Geo-Informatics</option>
+                <option>Urban and Regional Planning</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="reg-gender">Gender</label>
+              <select id="reg-gender" name="gender" class="form-control" required>
+                <option value="">Select gender</option>
+                <option value="Male">Male (Guy)</option>
+                <option value="Female">Female (Girl)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reg-residence">Where do you stay / sleep?</label>
+            <select id="reg-residence" name="residence" class="form-control" required>
+              <option value="">Choose your residence</option>
+              <option value="hostel">Hostel Resident (Complex / Akata)</option>
+              <option value="night">Night Owl (New Bldg, Library, MPH, Alumni)</option>
+              <option value="offcampus">Off-Campus Student (Akoka, Abule Oja, Tajuosho)</option>
+            </select>
+          </div>
+          <div id="hostel-fields" class="residence-fields" hidden>
+            <div class="form-group"><label for="reg-hostel">Select Hostel Name</label><select id="reg-hostel" name="hostel" class="form-control" disabled><option value="">Select hostel</option></select></div>
+            <div class="form-group"><label for="reg-room">Block &amp; Room Number</label><input id="reg-room" name="room" type="text" class="form-control" placeholder="e.g. Block C, Room 14" disabled></div>
+          </div>
+          <div id="spot-fields" class="residence-fields" hidden>
+            <div class="form-group" style="margin-bottom:0"><label for="reg-spot">Preferred Reading Spot</label><select id="reg-spot" name="readingSpot" class="form-control" disabled><option value="">Select reading spot</option><option>New Building</option><option>Library</option><option>MPH</option><option>Alumni</option></select></div>
+          </div>
+          <div id="offcampus-fields" class="residence-fields" hidden>
+            <div class="form-group" style="margin-bottom:0"><label for="reg-area">Area / Street</label><input id="reg-area" name="area" type="text" class="form-control" placeholder="e.g. Abule Oja" disabled></div>
+          </div>
+          
+          <div class="step-buttons" style="display:flex;gap:10px;margin-top:15px">
+            <button type="button" class="btn btn-outline" style="flex:1" onclick="prevFormStep(2)">⬅️ BACK</button>
+            <button type="button" class="btn btn-green" style="flex:2" onclick="nextFormStep(2)">NEXT STEP ➡️</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: SECURITY & PASSWORD -->
+        <div class="form-step" data-step="3">
+          <div class="step-indicator">Step 3 of 3: Security & Password</div>
+          <div class="form-group">
+            <label for="reg-password">Create Password</label>
+            <input id="reg-password" name="password" type="password" class="form-control" placeholder="At least 8 characters" minlength="8" autocomplete="new-password" required>
+          </div>
+          <div class="step-buttons" style="display:flex;gap:10px;margin-top:15px">
+            <button type="button" class="btn btn-outline" style="flex:1" onclick="prevFormStep(3)">⬅️ BACK</button>
+            <button id="register-submit" type="submit" class="btn btn-green" style="flex:2">CREATE ACCOUNT &amp; UNLOCK HUB</button>
+          </div>
+        </div>
+      </form>
+
+      <p style="text-align:center;margin-top:15px;font-size:.84rem;color:var(--muted)">
+        Already have an account? <a href="login.html" style="color:var(--green);font-weight:800;text-decoration:none">Log in here</a>
+      </p>
+    </div>
+  </main>
+  <script type="module" src="script.js"></script>
+</body>
+</html>
